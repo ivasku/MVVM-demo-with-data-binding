@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil.bind
 import androidx.databinding.DataBindingUtil.setContentView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.tms.mvvmdemo.databinding.ActivityMainBinding
@@ -46,6 +48,18 @@ class MainActivity : AppCompatActivity() {
         // now we need to asign value to that variable and then in the layout you are using it with eg @{person.name}
         binding.person = createPerson("Pero" , "Driver")
 
+
+        //ObserveLiveData
+        viewModel.getTotalSunLiveData().observe(this, Observer {
+            //this is where we get notified with new data
+            binding.tvSumResult2.text = it.toString()
+        })
+
+        binding.bAdd2.setOnClickListener {
+            viewModel.updateTotalSumLiveData(binding.etNumField2.text.toString().toInt())
+            // no need to set again the textView with the new data as we did before because we are observing the changes in LiveData and when it changes the code
+            // from line 53 - 56 will be called.
+        }
 
     }
 
