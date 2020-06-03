@@ -1,6 +1,11 @@
 # MVVM-demo-with-data-binding
 Simple example of ViewModel, ViewModelFactory, DataBinding and LiveData in Android, Kotlin.
 
+
+**Project is designed to serve as a simple example using the JetPack components.**
+
+# About
+-------------
 Demonstration how we use ViewModel to perserve data onConfigurationChange or when the Activity restarts. Also how we pass 
 constructor arguments to the ViewModel (ViewModelFactory)
 
