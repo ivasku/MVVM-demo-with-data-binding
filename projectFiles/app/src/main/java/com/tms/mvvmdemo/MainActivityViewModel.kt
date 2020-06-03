@@ -2,9 +2,9 @@ package com.tms.mvvmdemo
 
 import androidx.lifecycle.ViewModel
 
-class MainActivityViewModel : ViewModel() {
+class MainActivityViewModel(var startingSum: Int) : ViewModel() {
 
-    var totalSum: Int = 0
+    var totalSum: Int = startingSum
 
     fun getTotalSumExt(): Int {
         return totalSum

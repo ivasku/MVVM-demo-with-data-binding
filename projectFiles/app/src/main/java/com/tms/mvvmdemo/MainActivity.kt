@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
+    private lateinit var viewModelFactory: MainActivityViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,11 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         // initialise ViewModel and register it to this activity
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        //viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModelFactory = MainActivityViewModelFactory(100)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java) // since we have factory now we need to pass it as a second argument here so we init viewModel like this
+
+
         //use binding to set the initial value of the totalSum and to set it again onConfigurationChange from the ViewModel
         binding.tvSumResult.text = viewModel.getTotalSumExt().toString()
 
@@ -40,8 +45,6 @@ class MainActivity : AppCompatActivity() {
         // declared a data block and a variable insinde the R.layout.activity_main
         // now we need to asign value to that variable and then in the layout you are using it with eg @{person.name}
         binding.person = createPerson("Pero" , "Driver")
-
-
 
 
     }
