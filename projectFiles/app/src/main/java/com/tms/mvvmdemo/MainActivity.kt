@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity() {
             // from line 53 - 56 will be called.
         }
 
+        // we can also set the viewModel to the var to use in the layout onClick
+        binding.viewModel = viewModel
+
     }
 
     private fun createPerson(name:String, pos:String) : Person {
